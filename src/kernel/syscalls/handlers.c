@@ -1,5 +1,7 @@
 #include "syscalls/syscalls.h"
 
+#include "apps/clear.h"
+#include "apps/color.h"
 #include "drivers/screen.h"
 #include "io/file.h"
 #include "io/fs_file.h"
@@ -28,7 +30,7 @@ Vector *appContexts = NULL;
 
 void sys_fatal(const char *msg)
 {
-    static const char *HEADER = "Fatal error: ";
+    /*static const char *HEADER = "Fatal error: ";
 
     fillScreen('\0', FMT_FATAL);
 
@@ -38,17 +40,32 @@ void sys_fatal(const char *msg)
     char *errorMsg = malloc(count + 1);
     strcpy(errorMsg, HEADER);
     strcpy(errorMsg + headerCount, msg);
-    errorMsg[count] = '\0';
+    errorMsg[count] = '\0';*/
 
-    for (int x = 0; *errorMsg != '\0'; )
+    setCaret(0, 0);
+    char *crashTmp[] = {"color", "gray", "blue"};
+    colorMain(3, crashTmp);
+    crashTmp[0] = "clear";
+    clear(1, crashTmp);
+
+    printf("Unrecoverable error: The system crash call got initated by a process and the\n");
+    printf("system has gave up.\n\n");
+    printf("Make sure that you have not changed any settings that could cause this issue.\n");
+    printf("Additionaly, this is a pre-release version, so bugs can be common.\n");
+    printf("Below is a message from the process.\n\n");
+    printf(" Process Message: %s\n\n\n", msg);
+    printf("Please restart your computer.\n\n");
+    printf("Calling Kernel termination...");
+    setCaret(0, 0);
+    /*for (int x = 0; *errorMsg != '\0'; )
     {
-        setChar(x, 0, *errorMsg, FMT_FATAL);
+        setChar(x, 2, *errorMsg, FMT_FATAL);
 
         ++x;
         ++errorMsg;
     }
 
-    free(errorMsg);
+    free(errorMsg);*/
 
     // Disable computer
     terminateKernel();
