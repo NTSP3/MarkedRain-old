@@ -44,9 +44,10 @@ static void userAct()
     sys_enter(Context_new(""), shellMain, 2, shellArgv);
 
     consoleNewLine();
-    puts("No process running");
+    //puts("No process running");
 
-    puts("Exiting");
+    puts("Shell closed or value changed. Restart your computer");
+    puts("Terminating Kernel.");
 }
 
 // Terminates all modules
