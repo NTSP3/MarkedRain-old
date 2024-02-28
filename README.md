@@ -3,6 +3,15 @@
 The "MarkedRain" is an OS based on OS 2020. It uses the OS2020 bootloader and filesystem.
 This OS is nowhere near complete (and probably never will be) and should only be used within a Virual Machine.
 
+## Showcase
+
+
+![Preview 1](media/preview1.png "MarkedRain OS preview 1")
+
+![Preview 2](media/preview2.png "MarkedRain OS preview 2")
+
+![Preview 3](media/preview3.png "MarkedRain OS preview 3")
+
 ## Architecture
 
 - doc : Documentation
