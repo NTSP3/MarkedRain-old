@@ -74,9 +74,6 @@ static int shellCd(int argc, char **argv)
 
             return 0;
         }
-        
-        else if (strcmp(argv[1], ".") == 0)
-            return 0;
 
         // Absolute path (but has errors if enabled)
         if (argv[1][0] == '/') {
