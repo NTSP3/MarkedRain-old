@@ -11,7 +11,7 @@ int lsMain(int argc, char **argv)
 
     if (children == NULL)
     {
-        fprintf(stderr, "ls: cannot access '%s': No such file or directory\n", dir);
+        fprintf(stderr, "\n Cannot access \"%s\": No such file or directory\n\n", dir);
         return 1;
     }
 
