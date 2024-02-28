@@ -1,0 +1,1 @@
+int clear(int argc, char **argv);
