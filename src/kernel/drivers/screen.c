@@ -1,4 +1,5 @@
 #include "screen.h"
+#include "console.h"
 
 #include "ports.h"
 #include <string.h>
@@ -64,7 +65,8 @@ int setCaret(unsigned int x, unsigned int y)
 
     int cursorPos = y * SCREEN_WIDTH + x;
 
-    setCaretOffset(cursorPos);
+    newCaret(cursorPos);
+    setCaretOffset(cursorPos); //Set the cursor itself on the screen
 
     return 0;
 }
