@@ -21,4 +21,7 @@ void consoleTab();
 // Scrolls one line
 void consoleScroll();
 
+// Screen.c setCaret function fix for outside functions
+void newCaret(int newCur);
+
 unsigned int getCaret();

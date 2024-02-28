@@ -104,6 +104,10 @@ void consoleScroll()
     updateCaret();
 }
 
+void newCaret(int newCur) { //Fix for outside functions
+    caret = newCur;
+}
+
 unsigned int getCaret()
 {
     return caret;
