@@ -5,3 +5,4 @@ tst/*
 peda*
 .gdb_history
 fs/*
+Builds/*
