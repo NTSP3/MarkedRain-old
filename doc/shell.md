@@ -8,7 +8,7 @@ You can terminate any program with Ctrl + C.
 
 ## Commands
 
-Here is a list of usefull commands :
+Here is a list of useful commands :
 
 - cat
 - cd
