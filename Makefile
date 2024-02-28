@@ -46,8 +46,8 @@ OBJ_DIRS += $(dir $(OBJ_LIB_ASM))
 # Tools
 TOOL_ASM = nasm
 TOOL_VM = qemu-system-i386
-TOOL_C = /media/data/donnees/linux/logiciels/i386-elf-9.1.0/bin/i386-elf-gcc
-TOOL_LINK = /media/data/donnees/linux/logiciels/i386-elf-9.1.0/bin/i386-elf-ld
+TOOL_C = i686-elf-gcc
+TOOL_LINK = i686-elf-ld
 TOOL_DBG = gdb
 
 # Flags
