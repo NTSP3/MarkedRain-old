@@ -20,7 +20,7 @@
 #define BUILTIN_NOT_FOUND 0x7F100001
 
 //Operating System version
-char osver[25] = "0.01_2/23/2024@20:26";
+char osver[25] = "0.02_2/24/2024@22:36";
 //unsigned int osvnum = 0.01;
 
 static unsigned int userInputBegin;
