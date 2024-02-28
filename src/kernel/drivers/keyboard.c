@@ -6,6 +6,7 @@
 #include "syscalls/syscalls.h"
 #include <k/io.h>
 #include <stdio.h>
+#include <ctype.h>
 
 #define KBD_DATA 0x60
 
@@ -26,6 +27,7 @@ typedef char key_t;
 #define KEY_PRESSED_RSHIFT      0x36
 #define KEY_PRESSED_LCTRL       0x1D
 #define KEY_PRESSED_MOD         0x5B
+#define KEY_PRESSED_CAPSLOCK    0x3A
 
 // Digits
 #define KEY_PRESSED_DIGIT_0 0x0B
@@ -116,7 +118,7 @@ typedef char key_t;
 bool shiftPressed = false;
 bool ctrlPressed = false;
 bool keyboardEnabled = false;
-
+static bool capsLocked = false;
 
 // All displayable keys (without shift pressed)
 static key_t DISPLAYABLE_PRESSED_MAP[KEY_MAP_SIZE] = {
@@ -273,6 +275,10 @@ void onKeyPressed()
 
         return;
 
+    case KEY_PRESSED_CAPSLOCK:
+        capsLocked = !(capsLocked);
+        return;
+
     case KEY_PRESSED_LSHIFT:
     case KEY_PRESSED_RSHIFT:
         shiftPressed = true;
@@ -324,6 +330,14 @@ void onKeyPressed()
         }
         else
         {
+            if (isalpha(key) && capsLocked == true && shiftPressed == false) { // Shiftpress and CAPS can go very wrong
+                key -= 32; // Subtract num 32 to get capital version
+            }
+
+            else if (isalpha(key) && capsLocked == true && shiftPressed == true) {
+                key +=32; // Increase value so that it would look like shift and caps are interacting properly
+            }
+
             // Display key
             consolePut(key);
 
