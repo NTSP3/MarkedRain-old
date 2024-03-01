@@ -107,7 +107,7 @@ void identifyDisk()
     outb(0xEC, ATA_CMD);
 
     // Test exists
-    if (inb(ATA_CMD) != 0)
+    if (inb(ATA_CMD) == 0)
         fatal("Disk: The drive provided doesn't exist. Check the function calls.");
 
     // Test SATA drive
