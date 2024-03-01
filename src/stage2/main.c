@@ -21,7 +21,7 @@ void loadKernel()
 
         ++loadedSectors;
 
-        if (loadedSectors < KERNEL_MAX_SIZE)
+        if (loadedSectors > KERNEL_MAX_SIZE)
             fatal("Boot: Kernel is damaged. The size is above the preferred maximum.");
 
         // Set the location for next sector
