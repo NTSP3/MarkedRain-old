@@ -57,6 +57,8 @@ void sys_fatal(const char *msg)
     printf("Please restart your computer.\n\n");
     printf("Calling Kernel termination...");
     setCaret(0, 0);
+    // Disable computer
+    terminateKernel();
     /*for (int x = 0; *errorMsg != '\0'; )
     {
         setChar(x, 2, *errorMsg, FMT_FATAL);
@@ -66,9 +68,6 @@ void sys_fatal(const char *msg)
     }
 
     free(errorMsg);*/
-
-    // Disable computer
-    terminateKernel();
 }
 
 int sys_enter(Context *c, int (*entry)(int argc, char **argv), int argc, char **argv)
