@@ -48,7 +48,9 @@ void fatal(const char *s)
 
     cursorPos = 0;
 
+    puts("IO error called! The system has been terminated. Below shows the details.\n");
     puts(s);
+    puts("\nPlease restart your computer.");
 
     halt();
 }
@@ -106,13 +108,13 @@ void identifyDisk()
 
     // Test exists
     if (inb(ATA_CMD) == 0)
-        fatal("Drive doesn't exist");
+        fatal("Disk: The drive provided doesn't exist. Check the function calls.");
 
     // Test SATA drive
     unsigned char status;
     if (((status = inb(ATA_CMD)) & 0x80) != 0)
         if (inb(ATA_LBA_MID) != 0 || inb(ATA_LBA_HI) != 0)
-            fatal("Not a SATA drive");
+            fatal("Disk: The drive is not a SATA drive!");
 
     // Poll
     while ((status = inb(ATA_CMD) & 8) == 0 && (status & 1) == 0);
@@ -143,7 +145,7 @@ void readDisk(int sector, void *dst)
         status = inb(ATA_CMD);
 
     if (status & 0x01)
-        fatal("Disk can't be read");
+        fatal("The disk can't be read");
 
     // Read data
     for (int i = 0; i < 256; ++i)
