@@ -1,0 +1,29 @@
+# Compilers
+ASM=nasm          # Assembler
+CC=i686-elf-gcc   # C/C++ Compiler
+LD=i686-elf-gcc   # Linker
+
+# Directiores
+SRC_DIR=src       # Source directory
+OBJ_DIR=bin/raw   # Raw binaries directory
+MNT_DIR=bin/mnt   # Mount directory to copy files to image
+IMG_DIR=bin       # Final disk image directory
+
+# Categories are not files!
+.PHONY all floppy bootstage1
+
+# Main (begin)
+all: floppy
+
+# Floppy image
+floppy: $(IMG_DIR)/floppy.img   # Floppy instruction alias
+
+$(IMG_DIR)/floppy.img: bootstage1   # Include other categories for floppy making
+    #Creates 1.44mb blank image: sector 512, size is sector*count
+	dd if=/dev/zero of=$(IMG_DIR)/floppy.img bs=512 count=2880
+    #Creates FAT32 filesystem for the blank image
+	mkfs.vfat -F 32 -n "MARKRAIN OS" $(IMG_DIR)/floppy.img
+	dd if=$(OBJ_DIR)/bootloa.bin of=$(IMG_DIR)/main_floppy.img conv=notrunc
+	sudo mount $(IMG_DIR)/main_floppy.img $(IMG_DIR)/lol
+	sudo cp $(IMG_DIR)/kernel.bin $(IMG_DIR)/lol
+	sudo umount $(IMG_DIR)/lol
