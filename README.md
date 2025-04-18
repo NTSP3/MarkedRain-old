@@ -1,3 +1,8 @@
+# Note
+
+This project is not being updated. Please visit https://github.com/NTSP3/MarkedRain for the updated Operating System.
+
+
 # "MarkedRain" Operating System beta
 
 The "MarkedRain" is an OS based on OS 2020. It uses the OS2020 bootloader and filesystem.
